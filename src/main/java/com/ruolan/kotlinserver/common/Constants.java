@@ -46,6 +46,12 @@ public class Constants {
         //修改密码的一些常量
         public static final String MODIFY_PASSWORD_SUCCESS = "密码修改成功";
         public static final String MODIFY_PASSWORD_ERROR = "密码修改失败";
+
+        //商品分类相关的常量
+        public static final String CATEGORY_LIST_SUCCESS = "商品列表获取成功";
+        public static final String CATEGORY_LIST_ERROR = "商品列表获取失败";
+
+        public static final String CATEGORY_LIST_EMPTY = "商品列表为空";
     }
 
 //    public static final String

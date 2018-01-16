@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(produces = {"application/json;charset=UTF-8"}, value = {"/user"})
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
@@ -79,6 +79,8 @@ public class UserController {
         String mobile = loginRequest.getMobile();
         String password = loginRequest.getPassword();
 
+//        request.getSession()
+
         if (StringUtils.isEmpty(mobile)) {
             resp.setStatus(Constants.CODE.ERROR_CODE);
             resp.setMessage(Constants.MESSAGE.PHONE_NUMBER_IS_EMPTY);
@@ -92,6 +94,7 @@ public class UserController {
         }
 
         UserInfo userInfo = userService.getUserByMobile(mobile);
+
         if (userInfo == null) {
             resp.setStatus(Constants.CODE.ERROR_CODE);
             resp.setMessage(Constants.MESSAGE.USER_IS_EMPTY);
@@ -107,6 +110,9 @@ public class UserController {
         if (!StringUtils.isEmpty(loginRequest.getPushId())) {
             userInfo.setPushId(loginRequest.getPushId());
         }
+
+        //每次在登录的时候执行这个
+        request.getSession().setAttribute("currentUser", userInfo);
 
         this.userService.modifyUser(userInfo);
 
@@ -235,5 +241,13 @@ public class UserController {
 
     }
 
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResponse logout() {
+        BaseResponse baseResponse = new BaseResponse(null);
+        request.getSession().setAttribute("currentUser", null);
+        return baseResponse;
+    }
 
 }
