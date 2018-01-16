@@ -15,7 +15,6 @@ public class GoodsServiceImpl implements GoodsService {
     @Autowired
     private GoodsSkuDao goodsSkuMapper;
 
-
     public int addGoodsSku(GoodsSku model) {
         return this.goodsSkuMapper.insert(model);
     }
@@ -23,4 +22,5 @@ public class GoodsServiceImpl implements GoodsService {
     public List<GoodsSku> getGoodsSkuList(Integer goodsId) {
         return this.goodsSkuMapper.selectGoodsSkuList(goodsId);
     }
+
 }

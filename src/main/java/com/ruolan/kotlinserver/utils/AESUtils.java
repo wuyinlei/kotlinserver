@@ -1,13 +1,14 @@
 package com.ruolan.kotlinserver.utils;
 
-import java.security.Key;
-import java.security.Security;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import qiniu.happydns.util.Hex;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import org.apache.commons.codec.binary.Hex;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import java.security.Key;
+import java.security.Security;
 
 public class AESUtils {
     private boolean isJdkDES;

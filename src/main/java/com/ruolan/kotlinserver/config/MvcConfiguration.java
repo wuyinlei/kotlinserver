@@ -126,21 +126,21 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter implements Applica
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 //        super.addInterceptors(registry);
-        String interceptPaht = "/shopadmin/**";  //表示请求路径上只要包含这个shopadmin就需要拦截
-        //注册拦截器
-        InterceptorRegistration loginInterceptor = registry.addInterceptor(new LoginInterceptor());
-        //配置拦截器的路径
-        loginInterceptor.addPathPatterns(interceptPaht);
-        //还可以注册其他的拦截器
-        InterceptorRegistration permissionInterceptor = registry.addInterceptor(new PermissionInterceptor());
-        //配置拦截器的路径
-        permissionInterceptor.addPathPatterns(interceptPaht);
-
-
-        //配置不拦截的路径
-        /**shopregister page**/
-        permissionInterceptor.excludePathPatterns("/shopadmin/shoplist");
-        permissionInterceptor.excludePathPatterns("shopadmin/getshoplist");
+//        String interceptPaht = "/shopadmin/**";  //表示请求路径上只要包含这个shopadmin就需要拦截
+//        //注册拦截器
+//        InterceptorRegistration loginInterceptor = registry.addInterceptor(new LoginInterceptor());
+//        //配置拦截器的路径
+//        loginInterceptor.addPathPatterns(interceptPaht);
+//        //还可以注册其他的拦截器
+//        InterceptorRegistration permissionInterceptor = registry.addInterceptor(new PermissionInterceptor());
+//        //配置拦截器的路径
+//        permissionInterceptor.addPathPatterns(interceptPaht);
+//
+//
+//        //配置不拦截的路径
+//        /**shopregister page**/
+//        permissionInterceptor.excludePathPatterns("/shopadmin/shoplist");
+//        permissionInterceptor.excludePathPatterns("shopadmin/getshoplist");
 
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class HelloController {
 
-    @RequestMapping("/shopadmin/hello")
+    @RequestMapping("/hello")
     private String index(){
         return "Hello World!";
     }
