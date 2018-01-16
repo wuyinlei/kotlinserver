@@ -126,7 +126,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter implements Applica
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
-        String interceptPaht = "/user/**";  //表示请求路径上只要包含这个shopadmin就需要拦截
+        String interceptPaht = "/address/**";  //表示请求路径上只要包含这个shopadmin就需要拦截
         //注册拦截器
         InterceptorRegistration loginInterceptor = registry.addInterceptor(new LoginInterceptor());
         //配置拦截器的路径

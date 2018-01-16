@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(produces = {"application/json;charset=UTF-8"}, value = {"/category"})
-public class CategoryController {
+public class CategoryController extends BaseController{
 
     @Autowired
     private CategoryService categoryService;

@@ -1,10 +1,12 @@
 package com.ruolan.kotlinserver.interceptor;
 
+import com.google.gson.Gson;
+import com.ruolan.kotlinserver.common.Constants;
+import com.ruolan.kotlinserver.domain.base.BaseResponse;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
@@ -17,14 +19,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if (currentUser != null) {
             return true;
         } else {
-            PrintWriter out = response.getWriter();
-            out.println("<html>");
-            out.println("<script>");
-            //在这个地方要去登录设置路径
-            out.println("window.open ('" + request.getContextPath()
-                    + "/user/login','_self')");
-            out.println("</script>");
-            out.println("</html>");
+            //设置response的字符集
+            response.setCharacterEncoding("UTF-8");
+            BaseResponse baseResponse = new BaseResponse();
+            baseResponse.setStatus(Constants.CODE.ERROR_CODE);
+            baseResponse.setMessage("请登录");
+            Gson gson = new Gson();
+            String json = gson.toJson(baseResponse);
+            response.getWriter().write(json);
             return false;
         }
     }

@@ -50,8 +50,8 @@ public class Constants {
         //商品分类相关的常量
         public static final String CATEGORY_LIST_SUCCESS = "商品列表获取成功";
         public static final String CATEGORY_LIST_ERROR = "商品列表获取失败";
-
         public static final String CATEGORY_LIST_EMPTY = "商品列表为空";
+        public static final String CATEGORY_DETAIL_SUCCESS = "列表为空";
     }
 
 //    public static final String
