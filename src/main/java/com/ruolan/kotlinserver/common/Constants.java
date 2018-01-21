@@ -6,6 +6,8 @@ public class Constants {
 
     public class  CODE {
 
+        public static final int NO_PERMISSION_ERROR_CODE = -2;
+
         public static final int ERROR_CODE = -1;
 
         public static final int SUCCESS_CODE = 0;
@@ -14,6 +16,9 @@ public class Constants {
 
 
     public class MESSAGE{
+
+        public static final String CURRENT_USER = "CURRENT_USER";
+        public static final String USER_TOKEN = "token";
 
         //注册一些常量
         public static final String ACCOUNT_HAS_BEEN_REGISTERED = "账号已被注册";
@@ -52,6 +57,14 @@ public class Constants {
         public static final String CATEGORY_LIST_ERROR = "商品列表获取失败";
         public static final String CATEGORY_LIST_EMPTY = "商品列表为空";
         public static final String CATEGORY_DETAIL_SUCCESS = "列表为空";
+
+        //地址相关的常量
+        public static final String NO_PERMISSION = "没有权限操作,等登录之后再进行";
+        public static final String ADDRESS_LIST_EMPTY = "地址列表为空";
+        public static final String ADDRESS_LIST_SUCCESS = "地址列表获取成功";
+        public static final String ADD_ADDRESS_SUCCESS = "添加地址成功";
+        public static final String MODIFY_ADDRESS_SUCCESS = "修改地址成功";
+        public static final String DELETE_ADDRESS_SUCCESS = "刪除地址成功";
     }
 
 //    public static final String

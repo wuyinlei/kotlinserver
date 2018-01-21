@@ -6,7 +6,7 @@ public class RegisterRequest extends BaseRequest {
 
     private String mobile;
     private String verifyCode;
-    private String password;
+    private String pwd;
 
     public String getMobile() {
         return mobile;
@@ -24,11 +24,12 @@ public class RegisterRequest extends BaseRequest {
         this.verifyCode = verifyCode;
     }
 
-    public String getPassword() {
-        return password;
+
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }

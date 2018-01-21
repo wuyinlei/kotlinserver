@@ -16,10 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(produces = {"application/json;charset=UTF-8"}, value = {"/user"})
-public class UserController extends BaseController {
+public class UserController extends BaseController  {
 
     @Autowired
     private UserService userService;
@@ -55,10 +57,11 @@ public class UserController extends BaseController {
         userInfo = new UserInfo();
         userInfo.setUserMobile(mobile);
         userInfo.setUserName(mobile);
-        userInfo.setUserPwd(request.getPassword());
+        userInfo.setUserPwd(request.getPwd());
         userInfo.setUserIcon("http://image.xinliji.me/Fo057Cf3KCXPcTWb6WPKzaUztXvB");
         //写入数据库中
         int updateElement = this.userService.addUser(userInfo);
+        userInfo.setUserPwd(null);
         if (updateElement == 1) {
             return new BaseResponse<>(userInfo);
         } else {
@@ -74,7 +77,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse<UserInfo> login(@RequestBody LoginRequest loginRequest) {
+    public BaseResponse<UserInfo> login(HttpServletRequest request,@RequestBody LoginRequest loginRequest) {
         BaseResponse resp = new BaseResponse();
         String mobile = loginRequest.getMobile();
         String password = loginRequest.getPassword();
@@ -112,7 +115,9 @@ public class UserController extends BaseController {
         }
 
         //每次在登录的时候执行这个
-        request.getSession().setAttribute("currentUser", userInfo);
+        request.getSession().setAttribute(Constants.MESSAGE.CURRENT_USER, userInfo);
+
+        userInfo.setUserPwd(password);
 
         this.userService.modifyUser(userInfo);
 
@@ -244,9 +249,9 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     @ResponseBody
-    public BaseResponse logout() {
+    public BaseResponse logout(HttpServletRequest request) {
         BaseResponse baseResponse = new BaseResponse(null);
-        request.getSession().setAttribute("currentUser", null);
+        request.getSession().setAttribute(Constants.MESSAGE.CURRENT_USER, null);
         return baseResponse;
     }
 

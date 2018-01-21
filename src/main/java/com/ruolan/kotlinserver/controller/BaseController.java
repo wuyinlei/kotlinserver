@@ -9,7 +9,7 @@ public class BaseController {
 
     protected static final String DEFAULT_CHARTSET = "UTF-8";
     protected static final String DEFAULT_JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
-    protected HttpServletRequest request;
+//    protected HttpServletRequest request;
     protected HttpServletResponse response;
     protected HttpSession session;
 

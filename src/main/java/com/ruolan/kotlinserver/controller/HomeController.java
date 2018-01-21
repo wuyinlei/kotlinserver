@@ -18,7 +18,7 @@ import java.util.Map;
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(produces = {"application/json;charset=UTF-8"}, value = {"/home"})
-public class HomeController extends BaseController{
+public class HomeController extends BaseController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -52,8 +52,14 @@ public class HomeController extends BaseController{
         mTopics.add(HomeInfo.HOME_TOPIC_FIVE);
         realInfo.setTopics(mTopics);
 
-        String message = "夏日炎炎，第一波福利还有30秒到达战场\", \"新用户立领1000元优惠券";
-        realInfo.setMessage(message);
+        List<String> mMessage = new ArrayList<>();
+        String messageOne = "夏日炎炎，第一波福利还有30秒到达战场\", \"新用户立领1000元优惠券";
+        String messageTwo = "秋日嘎嘎，第二波福利还有30秒到达战场\", \"新用户立领2000元优惠券";
+        String messageThree = "冬日寒寒，第三波福利还有30秒到达战场\", \"新用户立领900元优惠券";
+        mMessage.add(messageOne);
+        mMessage.add(messageTwo);
+        mMessage.add(messageThree);
+        realInfo.setMessage(mMessage);
         modelMap.put("home", realInfo);
         return modelMap;
 

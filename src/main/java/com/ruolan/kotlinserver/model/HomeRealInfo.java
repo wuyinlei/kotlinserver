@@ -12,7 +12,7 @@ public class HomeRealInfo {
 
     private List<String> topics;
 
-    private String message;
+    private List<String> message;
 
 
     public List<String> getBanners() {
@@ -39,11 +39,11 @@ public class HomeRealInfo {
         this.topics = topics;
     }
 
-    public String getMessage() {
-        return message;
+    public void setMessage(List<String> message) {
+        this.message = message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public List<String> getMessage() {
+        return message;
     }
 }
