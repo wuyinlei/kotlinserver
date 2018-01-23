@@ -39,7 +39,7 @@ public class Constants {
         public static final String NEW_PASSWORD_IS_EMPTY = "密码不能为空";
 
 
-        public static final String USER_IS_EMPTY = "该用户不存在";
+        public static final String USER_IS_EMPTY = "请登录";
 
         public static final String USER_PASSWORD_ERROR = "输入的密码不对";
 

@@ -18,4 +18,6 @@ public interface UserDao {
 
     int updateByPrimaryKey(UserInfo paramUserInfo);
 
+    UserInfo selectByToken(String token);
+
 }

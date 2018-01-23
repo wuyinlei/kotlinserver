@@ -12,4 +12,6 @@ public interface UserService {
 
     int modifyUser(UserInfo paramUserInfo);
 
+    UserInfo selectByToken(String token);
+
 }

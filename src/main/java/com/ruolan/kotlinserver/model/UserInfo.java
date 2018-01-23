@@ -15,6 +15,7 @@
 /*     */   private String userAddress;
 /*     */   private String userSign;
 /*     */   private String pushId;
+            private String token;
 /*     */ 
 /*     */   public Integer getId()
 /*     */   {
@@ -120,7 +121,17 @@
 /*     */   public void setPushId(String pushId) {
 /* 131 */     this.pushId = pushId;
 /*     */   }
-/*     */ }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    /*     */ }
+
 
 /* Location:           E:\WorkSpace\App\Test\appidzbnbo3hx6t\ROOT\WEB-INF\classes\
  * Qualified Name:     com.module.user.model.UserInfo

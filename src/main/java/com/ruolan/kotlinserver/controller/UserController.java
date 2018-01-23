@@ -2,26 +2,31 @@ package com.ruolan.kotlinserver.controller;
 
 
 import com.ruolan.kotlinserver.common.Constants;
+import com.ruolan.kotlinserver.domain.LoginRequest;
 import com.ruolan.kotlinserver.domain.ModifyPwdRequest;
+import com.ruolan.kotlinserver.domain.RegisterRequest;
 import com.ruolan.kotlinserver.domain.UpdateRequest;
 import com.ruolan.kotlinserver.domain.base.BaseResponse;
-import com.ruolan.kotlinserver.domain.LoginRequest;
-import com.ruolan.kotlinserver.domain.RegisterRequest;
 import com.ruolan.kotlinserver.model.UserInfo;
 import com.ruolan.kotlinserver.service.UserService;
+import com.ruolan.kotlinserver.utils.TextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(produces = {"application/json;charset=UTF-8"}, value = {"/user"})
-public class UserController extends BaseController  {
+public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
@@ -77,7 +82,7 @@ public class UserController extends BaseController  {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse<UserInfo> login(HttpServletRequest request,@RequestBody LoginRequest loginRequest) {
+    public BaseResponse<UserInfo> login(HttpServletRequest request, @RequestBody LoginRequest loginRequest) {
         BaseResponse resp = new BaseResponse();
         String mobile = loginRequest.getMobile();
         String password = loginRequest.getPassword();
@@ -118,6 +123,10 @@ public class UserController extends BaseController  {
         request.getSession().setAttribute(Constants.MESSAGE.CURRENT_USER, userInfo);
 
         userInfo.setUserPwd(password);
+
+        String newToken = UUID.randomUUID().toString();   //使用一个随机的UUID值充当Token
+        newToken = TextUtil.encodeBase64(newToken); //进行一次base64操作
+        userInfo.setToken(newToken);
 
         this.userService.modifyUser(userInfo);
 
@@ -206,16 +215,11 @@ public class UserController extends BaseController  {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse<UserInfo> update(@RequestBody UpdateRequest updateRequest) {
+    public BaseResponse<UserInfo> update(HttpServletRequest request, @RequestBody UpdateRequest updateRequest) {
         BaseResponse resp = new BaseResponse();
 
-        if (updateRequest.getId() < 0) {
-            resp.setStatus(Constants.CODE.ERROR_CODE);
-            resp.setMessage(Constants.MESSAGE.USER_IS_EMPTY);
-            return resp;
-        }
+        UserInfo userInfo = this.userService.selectByToken(request.getHeader(Constants.MESSAGE.USER_TOKEN));
 
-        UserInfo userInfo = this.userService.getUserById(updateRequest.getId());
         if (userInfo == null) {
             resp.setStatus(Constants.CODE.ERROR_CODE);
             resp.setMessage(Constants.MESSAGE.USER_IS_EMPTY);

@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
     public int modifyUser(UserInfo paramUserInfo) {
         return userDao.updateByPrimaryKey(paramUserInfo);
     }
+
+    @Override
+    public UserInfo selectByToken(String token) {
+        return userDao.selectByToken(token);
+    }
 }

@@ -4,7 +4,7 @@ import com.ruolan.kotlinserver.domain.base.BaseRequest;
 
 public class UpdateRequest extends BaseRequest {
 
-    private Integer id;
+    private Integer id = -1;
     private String userName;
     private String userIcon;
     private String gender;

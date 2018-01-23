@@ -15,10 +15,11 @@
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
         <result column="user_sign" property="userSign" jdbcType="VARCHAR"/>
         <result column="push_id" property="pushId" jdbcType="VARCHAR"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
         id, user_name, user_pwd, user_mobile, user_icon, user_real_name, user_identity_card,
-        user_nick_name, user_gender, user_birthday, user_address, user_sign,push_id
+        user_nick_name, user_gender, user_birthday, user_address, user_sign,push_id,token
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -26,6 +27,14 @@
         from user_info
         where id = #{id,jdbcType=INTEGER}
     </select>
+
+    <select id="selectByToken" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        where token = #{id,jdbcType=INTEGER}
+    </select>
+
     <select id="selectByMobile" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -40,12 +49,22 @@
         insert into user_info (user_name, user_pwd,
         user_mobile, user_icon, user_real_name,
         user_identity_card, user_nick_name, user_gender,
-        user_birthday, user_address, user_sign,push_id
+        user_birthday, user_address, user_sign,push_id,token
         )
-        values (#{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR},
-        #{userMobile,jdbcType=VARCHAR}, #{userIcon,jdbcType=VARCHAR}, #{userRealName,jdbcType=VARCHAR},
-        #{userIdentityCard,jdbcType=VARCHAR}, #{userNickName,jdbcType=VARCHAR}, #{userGender,jdbcType=VARCHAR},
-        #{userBirthday,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR}, #{userSign,jdbcType=VARCHAR},#{pushId,jdbcType=VARCHAR}
+        values (
+        #{userName,jdbcType=VARCHAR},
+        #{userPwd,jdbcType=VARCHAR},
+        #{userMobile,jdbcType=VARCHAR},
+         #{userIcon,jdbcType=VARCHAR},
+         #{userRealName,jdbcType=VARCHAR},
+        #{userIdentityCard,jdbcType=VARCHAR},
+         #{userNickName,jdbcType=VARCHAR},
+          #{userGender,jdbcType=VARCHAR},
+        #{userBirthday,jdbcType=VARCHAR},
+         #{userAddress,jdbcType=VARCHAR},
+         #{userSign,jdbcType=VARCHAR},
+         #{pushId,jdbcType=VARCHAR},
+         #{token,jdbcType=VARCHAR}
         )
     </insert>
     <insert id="insertSelective" parameterType="com.ruolan.kotlinserver.model.UserInfo">
@@ -90,6 +109,9 @@
             <if test="pushId != null">
                 push_id,
             </if>
+            <if test="token != null">
+                token,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -130,6 +152,9 @@
             </if>
             <if test="pusId != null">
                 #{pusId,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+                #{token,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -172,6 +197,9 @@
             <if test="pushId != null">
                 push_id = #{pushId,jdbcType=VARCHAR},
             </if>
+            <if test="token != null">
+                #{token,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -188,7 +216,8 @@
         user_birthday = #{userBirthday,jdbcType=VARCHAR},
         user_address = #{userAddress,jdbcType=VARCHAR},
         user_sign = #{userSign,jdbcType=VARCHAR},
-        push_id = #{pushId,jdbcType=VARCHAR}
+        push_id = #{pushId,jdbcType=VARCHAR},
+        token = #{token,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>
