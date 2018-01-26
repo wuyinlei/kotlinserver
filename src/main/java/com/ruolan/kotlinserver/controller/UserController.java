@@ -156,20 +156,14 @@ public class UserController extends BaseController {
     @ResponseBody
     public BaseResponse<UserInfo> resetPassword(@RequestBody ModifyPwdRequest modifyPwdRequest) {
         BaseResponse resp = new BaseResponse();
+        
 
         String mobile = modifyPwdRequest.getMobile();
-        String oldPassword = modifyPwdRequest.getOldPassword();
         String newPassword = modifyPwdRequest.getNewPassword();
 
         if (StringUtils.isEmpty(mobile)) {
             resp.setStatus(Constants.CODE.ERROR_CODE);
             resp.setMessage(Constants.MESSAGE.PHONE_NUMBER_IS_EMPTY);
-            return resp;
-        }
-
-        if (StringUtils.isEmpty(oldPassword)) {
-            resp.setStatus(Constants.CODE.ERROR_CODE);
-            resp.setMessage(Constants.MESSAGE.PASSWORD_IS_EMPTY);
             return resp;
         }
 
@@ -183,12 +177,6 @@ public class UserController extends BaseController {
         if (userInfo == null) {
             resp.setStatus(Constants.CODE.ERROR_CODE);
             resp.setMessage(Constants.MESSAGE.USER_IS_EMPTY);
-            return resp;
-        }
-
-        if (!userInfo.getUserPwd().equals(oldPassword)) {
-            resp.setStatus(Constants.CODE.ERROR_CODE);
-            resp.setMessage(Constants.MESSAGE.USER_PASSWORD_ERROR);
             return resp;
         }
 

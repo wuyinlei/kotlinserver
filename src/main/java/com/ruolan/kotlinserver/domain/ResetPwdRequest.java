@@ -1,6 +1,8 @@
 package com.ruolan.kotlinserver.domain;
 
-public class ModifyPwdRequest {
+import com.ruolan.kotlinserver.domain.base.BaseRequest;
+
+public class ResetPwdRequest extends BaseRequest{
 
     private String mobile;
     private String newPassword;
@@ -12,6 +14,7 @@ public class ModifyPwdRequest {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
 
     public String getNewPassword() {
         return newPassword;

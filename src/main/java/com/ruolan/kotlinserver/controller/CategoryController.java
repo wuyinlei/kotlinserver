@@ -2,6 +2,7 @@ package com.ruolan.kotlinserver.controller;
 
 
 import com.ruolan.kotlinserver.common.Constants;
+import com.ruolan.kotlinserver.domain.GetCategoryRequest;
 import com.ruolan.kotlinserver.domain.base.BaseResponse;
 import com.ruolan.kotlinserver.model.Category;
 import com.ruolan.kotlinserver.model.CategoryFirstData;
@@ -10,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +32,7 @@ public class CategoryController extends BaseController{
      *
      * @return
      */
+    @Deprecated
     @RequestMapping(value = "/getfirstlist", method = RequestMethod.GET)
     @ResponseBody
     public BaseResponse<List<Category>> getFirstCategoryList() {
@@ -37,7 +40,7 @@ public class CategoryController extends BaseController{
 
         List<Category> parentList = categoryService.getParentList();
 
-        List<Category> categoryList = categoryService.getCategoryList(0);
+        List<Category> categoryList = categoryService.getCategoryList(1);
         if ((categoryList == null) || (categoryList.size() == 0)) {
             resp.setStatus(Constants.CODE.ERROR_CODE);
             resp.setMessage(Constants.MESSAGE.CATEGORY_LIST_EMPTY);
@@ -59,13 +62,13 @@ public class CategoryController extends BaseController{
      * @param categoryId  商品id
      * @return
      */
-    @RequestMapping(value = "/getlist", method = RequestMethod.GET)
+    @RequestMapping(value = "/getlist", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse<List<Category>> getCategoryList(@Param(value = "categoryId") int categoryId) {
+    public BaseResponse<List<Category>> getCategoryList(@RequestBody GetCategoryRequest req) {
         BaseResponse resp = new BaseResponse();
 
 
-        List<Category> categoryList = categoryService.getCategoryList(categoryId);
+        List<Category> categoryList = categoryService.getCategoryList(req.getParentId());
         if ((categoryList == null) || (categoryList.size() == 0)) {
             resp.setStatus(Constants.CODE.ERROR_CODE);
             resp.setMessage(Constants.MESSAGE.CATEGORY_LIST_EMPTY);
