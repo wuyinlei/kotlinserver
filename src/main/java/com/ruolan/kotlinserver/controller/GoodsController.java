@@ -35,7 +35,7 @@ public class GoodsController {
      * @param req GetGoodsListRequest
      * @return
      */
-    @RequestMapping(value = {"/getgoodslist"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/getgoodslist"}, method = RequestMethod.POST)
     @ResponseBody
     public BaseResponse<List<GoodsInfo>> getGoodsList(@RequestBody GetGoodsListRequest req) {
         BaseResponse resp = new BaseResponse();

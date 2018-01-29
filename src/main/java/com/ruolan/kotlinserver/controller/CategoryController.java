@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(produces = {"application/json;charset=UTF-8"}, value = {"/category"})
-public class CategoryController extends BaseController{
+public class CategoryController{
 
     @Autowired
     private CategoryService categoryService;
@@ -59,7 +59,7 @@ public class CategoryController extends BaseController{
 
     /**
      * 根据第一级商品分类的id  获取二级分类
-     * @param categoryId  商品id
+     * @param req  商品id
      * @return
      */
     @RequestMapping(value = "/getlist", method = RequestMethod.POST)

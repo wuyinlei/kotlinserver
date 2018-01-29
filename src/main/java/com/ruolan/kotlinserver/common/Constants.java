@@ -1,10 +1,8 @@
 package com.ruolan.kotlinserver.common;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 public class Constants {
 
-    public class  CODE {
+    public class CODE {
 
         public static final int NO_PERMISSION_ERROR_CODE = -2;
 
@@ -15,7 +13,7 @@ public class Constants {
     }
 
 
-    public class MESSAGE{
+    public class MESSAGE {
 
         public static final String CURRENT_USER = "CURRENT_USER";
         public static final String USER_TOKEN = "token";
@@ -65,6 +63,13 @@ public class Constants {
         public static final String ADD_ADDRESS_SUCCESS = "添加地址成功";
         public static final String MODIFY_ADDRESS_SUCCESS = "修改地址成功";
         public static final String DELETE_ADDRESS_SUCCESS = "刪除地址成功";
+
+        //购物车相关的常量
+        public static final String ADD_CART_SUSSECC = "添加购物车成功";
+        public static final String ADD_CART_ERROR = "添加购物车失败";
+        public static final String DELETE_CART_ERROR = "删除商品失败";
+        public static final String DELETE_CART_SUCCESS = "删除商品成功";
+
     }
 
 //    public static final String

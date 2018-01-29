@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(produces = {"application/json;charset=UTF-8"}, value = {"/address"})
-public class AddressController extends BaseController {
+public class AddressController  {
 
     public static final int IS_DEFAULT = 0;
     public static final int IS_NOT_DEFAULT = 1;

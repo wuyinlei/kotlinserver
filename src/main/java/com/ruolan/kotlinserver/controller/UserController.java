@@ -26,7 +26,7 @@ import java.util.UUID;
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(produces = {"application/json;charset=UTF-8"}, value = {"/user"})
-public class UserController extends BaseController {
+public class UserController {
 
     @Autowired
     private UserService userService;

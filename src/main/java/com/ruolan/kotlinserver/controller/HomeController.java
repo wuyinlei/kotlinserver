@@ -18,7 +18,7 @@ import java.util.Map;
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(produces = {"application/json;charset=UTF-8"}, value = {"/home"})
-public class HomeController extends BaseController {
+public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
