@@ -1,5 +1,6 @@
 package com.ruolan.kotlinserver.common;
 
+
 public class Constants {
 
     public class CODE {
@@ -69,6 +70,12 @@ public class Constants {
         public static final String ADD_CART_ERROR = "添加购物车失败";
         public static final String DELETE_CART_ERROR = "删除商品失败";
         public static final String DELETE_CART_SUCCESS = "删除商品成功";
+
+
+        //消息相关常量
+        public static final String GET_MESSAGE_LIST_ERROR = "消息列表为空";
+        public static final String GET_MESSAGE_LIST_SUCCESS = "消息列表获取成功";
+
 
     }
 
