@@ -89,6 +89,7 @@ public class UserController {
      * @param loginRequest LoginRequest
      * @return
      */
+    @Transactional
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponse<UserInfo> login(HttpServletRequest request, @RequestBody LoginRequest loginRequest) {

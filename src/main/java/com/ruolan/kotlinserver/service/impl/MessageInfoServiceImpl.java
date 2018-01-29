@@ -4,9 +4,11 @@ import com.ruolan.kotlinserver.dao.MessageInfoDao;
 import com.ruolan.kotlinserver.model.MessageInfo;
 import com.ruolan.kotlinserver.service.MessageInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MessageInfoServiceImpl implements MessageInfoService {
 
     @Autowired

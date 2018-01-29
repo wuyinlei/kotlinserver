@@ -4,9 +4,11 @@ import com.ruolan.kotlinserver.dao.CartGoodsDao;
 import com.ruolan.kotlinserver.model.CartGoods;
 import com.ruolan.kotlinserver.service.CartGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CartGoodsServiceImpl implements CartGoodsService {
 
     @Autowired
