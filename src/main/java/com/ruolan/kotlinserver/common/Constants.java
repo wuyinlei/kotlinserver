@@ -43,6 +43,8 @@ public class Constants {
         public static final String USER_PASSWORD_ERROR = "输入的密码不对";
 
         public static final String LOGIN_SUCCESS = "登录成功";
+        public static final String LOGIN_SUCCESS_CONTENT = "恭喜您登录成功";
+
 
         public static final String UPDATE_USER_INFO_ERROR = "更新用户信息失败";
 

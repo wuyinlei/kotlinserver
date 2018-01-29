@@ -7,9 +7,14 @@ import com.ruolan.kotlinserver.domain.ModifyPwdRequest;
 import com.ruolan.kotlinserver.domain.RegisterRequest;
 import com.ruolan.kotlinserver.domain.UpdateRequest;
 import com.ruolan.kotlinserver.domain.base.BaseResponse;
+import com.ruolan.kotlinserver.model.MessageInfo;
 import com.ruolan.kotlinserver.model.UserInfo;
+import com.ruolan.kotlinserver.service.MessageInfoService;
 import com.ruolan.kotlinserver.service.UserService;
+import com.ruolan.kotlinserver.utils.DateUtil;
+import com.ruolan.kotlinserver.utils.PushSender;
 import com.ruolan.kotlinserver.utils.TextUtil;
+import com.sun.tracing.dtrace.Attributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -21,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.UUID;
 
 @Controller
@@ -30,6 +36,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MessageInfoService messageInfoService;
 
     /**
      * 注册接口
@@ -147,8 +156,17 @@ public class UserController {
      * @param pushId 推送id
      */
     private void sendMessage(Integer userId, String pushId) {
-        // TODO: 2018/1/16 发送消息  集成jpush
 
+        String curTime = DateUtil.format(new Date(), DateUtil.FORMAT_LONG_NEW);
+        MessageInfo msg = new MessageInfo();
+        msg.setMsgIcon("http://image.xinliji.me/Fo057Cf3KCXPcTWb6WPKzaUztXvB");
+        msg.setMsgTitle(Constants.MESSAGE.LOGIN_SUCCESS);
+        msg.setMsgContent(Constants.MESSAGE.LOGIN_SUCCESS_CONTENT);
+        msg.setMsgTime(curTime);
+        msg.setUserId(userId);
+        messageInfoService.addMessage(msg);
+
+        PushSender.sendLoginEvent(pushId);
 
     }
 
