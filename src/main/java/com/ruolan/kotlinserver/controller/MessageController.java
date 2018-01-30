@@ -6,6 +6,7 @@ import com.ruolan.kotlinserver.domain.base.BaseResponse;
 import com.ruolan.kotlinserver.model.MessageInfo;
 import com.ruolan.kotlinserver.model.UserInfo;
 import com.ruolan.kotlinserver.service.MessageInfoService;
+import com.ruolan.kotlinserver.service.UserService;
 import com.ruolan.kotlinserver.utils.UserDefault;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -24,12 +25,16 @@ public class MessageController {
 
     @Autowired
     private MessageInfoService messageService;
+    @Autowired
+    private UserService userService;
+
 
     @RequestMapping(value = {"/getList"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
     @ResponseBody
     public BaseResponse<List<MessageInfo>> getList(HttpServletRequest request) {
         BaseResponse resp = new BaseResponse();
-        UserInfo userInfo = UserDefault.getUserInfo(request);
+        UserInfo userInfo = UserDefault.getUserInfo(request,userService);
+
         if (userInfo == null) {
             resp.setMessage(Constants.MESSAGE.NO_PERMISSION);
             resp.setStatus(Constants.CODE.NO_PERMISSION_ERROR_CODE);

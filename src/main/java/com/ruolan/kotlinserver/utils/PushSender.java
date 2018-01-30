@@ -25,7 +25,7 @@ public class PushSender {
         JPushClient jpushClient = new JPushClient(MASTER_SECRET, APP_KEY, null, ClientConfig.getInstance());
 
         try {
-            PushResult localPushResult = jpushClient.sendPush(buildPushObject_all_alias_alert());
+            PushResult localPushResult = jpushClient.sendPush(buildLoginObject(pushId));
             System.out.println("推送的结果是：" + localPushResult.statusCode);
         } catch (APIConnectionException e) {
             e.printStackTrace();

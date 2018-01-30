@@ -8,6 +8,7 @@ import com.ruolan.kotlinserver.domain.base.BaseResponse;
 import com.ruolan.kotlinserver.model.CartGoods;
 import com.ruolan.kotlinserver.model.UserInfo;
 import com.ruolan.kotlinserver.service.CartGoodsService;
+import com.ruolan.kotlinserver.service.UserService;
 import com.ruolan.kotlinserver.utils.UserDefault;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -26,11 +27,14 @@ public class CartGoodsController {
     @Autowired
     CartGoodsService cartGoodsService;
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping(value = {"/add"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
     @ResponseBody
     public BaseResponse<Integer> addCartGoods(@RequestBody AddCartGoodsRequest req, HttpServletRequest request) {
         BaseResponse resp = new BaseResponse();
-        UserInfo userInfo = UserDefault.getUserInfo(request);
+        UserInfo userInfo = UserDefault.getUserInfo(request, userService);
         if (userInfo == null) {
             resp.setMessage(Constants.MESSAGE.NO_PERMISSION);
             resp.setStatus(Constants.CODE.NO_PERMISSION_ERROR_CODE);
@@ -61,7 +65,7 @@ public class CartGoodsController {
     @ResponseBody
     public BaseResponse<Integer> deleteCartGoods(@RequestBody DeleteCartGoodsRequest req, HttpServletRequest request) {
         BaseResponse resp = new BaseResponse();
-        UserInfo userInfo = UserDefault.getUserInfo(request);
+        UserInfo userInfo = UserDefault.getUserInfo(request, userService);
         if (userInfo == null) {
             resp.setMessage(Constants.MESSAGE.NO_PERMISSION);
             resp.setStatus(Constants.CODE.NO_PERMISSION_ERROR_CODE);
