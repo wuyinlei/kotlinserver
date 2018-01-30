@@ -72,6 +72,9 @@ public class Constants {
         public static final String ADD_CART_ERROR = "添加购物车失败";
         public static final String DELETE_CART_ERROR = "删除商品失败";
         public static final String DELETE_CART_SUCCESS = "删除商品成功";
+        public static final String GET_CART_LIST_SUCCESS = "获取购物车列表成功";
+        public static final String GET_CART_LIST_EMPTY = "购物车列表为空";
+
 
 
         //消息相关常量
@@ -79,6 +82,8 @@ public class Constants {
         public static final String GET_MESSAGE_LIST_SUCCESS = "消息列表获取成功";
 
 
+        public static final String GET_PAY_SIGN_SUCCESS = "获取支付sign成功";
+        public static final String GET_PAY_SIGN_ERROR = "获取支付sign失败";
     }
 
 //    public static final String

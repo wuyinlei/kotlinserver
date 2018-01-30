@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @EnableAutoConfiguration
@@ -29,6 +30,34 @@ public class CartGoodsController {
 
     @Autowired
     UserService userService;
+
+
+    @RequestMapping(value = {"/getList"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
+    @ResponseBody
+    public BaseResponse<List<CartGoods>> getList(HttpServletRequest request) {
+        BaseResponse resp = new BaseResponse();
+
+        UserInfo userInfo = UserDefault.getUserInfo(request, userService);
+
+        if (userInfo == null) {
+            resp.setMessage(Constants.MESSAGE.NO_PERMISSION);
+            resp.setStatus(Constants.CODE.NO_PERMISSION_ERROR_CODE);
+            return resp;
+        }
+
+        List list = this.cartGoodsService.getCartGoodsList(userInfo.getId());
+        if ((list == null) || (list.size() == 0)) {
+            resp.setStatus(Constants.CODE.ERROR_CODE);
+            resp.setMessage(Constants.MESSAGE.GET_CART_LIST_EMPTY);
+            return resp;
+        }
+
+        resp.setStatus(Constants.CODE.SUCCESS_CODE);
+        resp.setMessage(Constants.MESSAGE.GET_CART_LIST_SUCCESS);
+        resp.setData(list);
+        return resp;
+    }
+
 
     @RequestMapping(value = {"/add"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
     @ResponseBody
