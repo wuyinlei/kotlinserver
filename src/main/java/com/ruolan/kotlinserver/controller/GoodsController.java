@@ -64,7 +64,7 @@ public class GoodsController {
      * @param req
      * @return
      */
-    @RequestMapping(value = {"/getgoodsdetail"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/getgoodsdetail"}, method = RequestMethod.POST)
     @ResponseBody
     public BaseResponse<GoodsInfo> getGoodsDetail(@RequestBody GetGoodsDetailRequest req) {
         BaseResponse resp = new BaseResponse();
