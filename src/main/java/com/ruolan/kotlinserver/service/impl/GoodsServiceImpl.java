@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service
+@Service("goodsService")
 public class GoodsServiceImpl implements GoodsService {
 
     @Autowired

@@ -108,6 +108,13 @@
         select
         <include refid="Base_Column_List" />
         from message_info
+        where user_id = #{userId} LIMIT #{beginIndex} ,#{pageSize}
+    </select>
+
+    <select id="selectAllMessageList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from message_info
         where user_id = #{userId}
     </select>
 </mapper>

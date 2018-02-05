@@ -13,12 +13,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service("orderService")
 public class OrderInfoServiceImpl implements OrderInfoService {
 
     @Autowired
     OrderInfoDao orderInfoDao;
-
 
     @Autowired
     private OrderGoodsDao orderGoodsDao;

@@ -76,14 +76,19 @@ public class Constants {
         public static final String GET_CART_LIST_EMPTY = "购物车列表为空";
 
 
-
         //消息相关常量
         public static final String GET_MESSAGE_LIST_ERROR = "消息列表为空";
         public static final String GET_MESSAGE_LIST_SUCCESS = "消息列表获取成功";
+        public static final String PAGE_NUM_IS_ILLEGAL = "输入的页数非法";
 
-
+        //支付sign相关常量
         public static final String GET_PAY_SIGN_SUCCESS = "获取支付sign成功";
         public static final String GET_PAY_SIGN_ERROR = "获取支付sign失败";
+
+        //订单相关常量
+        public static final String ORDER_LIST_IS_EMPTY = "订单列表为空";
+        public static final String ORDER_LIST_IS_SUCCESS = "订单列表获取成功";
+
     }
 
 //    public static final String

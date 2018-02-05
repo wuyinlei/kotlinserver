@@ -3,6 +3,7 @@ package com.ruolan.kotlinserver.dao;
 import com.ruolan.kotlinserver.model.MessageInfo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MessageInfoDao {
 
@@ -18,6 +19,8 @@ public interface MessageInfoDao {
 
     int updateByPrimaryKey(MessageInfo paramMessageInfo);
 
-    List<MessageInfo> selectMessageList(int paramInt);
+    List<MessageInfo> selectMessageList(Map map);
+
+    List<MessageInfo> selectAllMessageList(int userId);
 
 }

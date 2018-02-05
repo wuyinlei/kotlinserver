@@ -55,4 +55,5 @@ public class MessageInfo {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
 }
