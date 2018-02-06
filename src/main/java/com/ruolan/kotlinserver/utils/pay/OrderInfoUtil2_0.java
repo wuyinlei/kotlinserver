@@ -41,6 +41,8 @@ public class OrderInfoUtil2_0 {
 
     public static Map<String, String> buildOrderParamMap(String app_id, boolean rsa2, String totalPrice, String orderId) {
         Map keyValues = new HashMap();
+
+        totalPrice = "0.01";
  
         keyValues.put("app_id", app_id);
  
