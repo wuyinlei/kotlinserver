@@ -2,7 +2,7 @@ package com.ruolan.kotlinserver.controller;
 
 
 import com.ruolan.kotlinserver.common.Constants;
-import com.ruolan.kotlinserver.domain.GetMessageReuqest;
+import com.ruolan.kotlinserver.domain.GetMessageRequest;
 import com.ruolan.kotlinserver.domain.base.BaseResponse;
 import com.ruolan.kotlinserver.model.MessageInfo;
 import com.ruolan.kotlinserver.model.UserInfo;
@@ -35,7 +35,7 @@ public class MessageController {
 
     @RequestMapping(value = {"/getList"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
     @ResponseBody
-    public BaseResponse<List<MessageInfo>> getList(HttpServletRequest request,@RequestBody GetMessageReuqest req) {
+    public BaseResponse<List<MessageInfo>> getList(HttpServletRequest request,@RequestBody GetMessageRequest req) {
         BaseResponse resp = new BaseResponse();
         UserInfo userInfo = UserDefault.getUserInfo(request,userService);
 

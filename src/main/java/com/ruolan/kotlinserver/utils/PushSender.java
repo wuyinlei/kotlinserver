@@ -19,7 +19,7 @@ public class PushSender {
 
     private static final String MASTER_SECRET = "4927dde9fe92ab370ac4e4d7";
     private static final String APP_KEY = "490b866e61018bd825e07028";
-//    private static JPushClient jpushClient = new JPushClient("4927dde9fe92ab370ac4e4d7", "490b866e61018bd825e07028", null, ClientConfig.getInstance());
+    private static JPushClient jpushClient = new JPushClient("4927dde9fe92ab370ac4e4d7", "490b866e61018bd825e07028", null, ClientConfig.getInstance());
 
     public static void sendLoginEvent(String pushId) {
         JPushClient jpushClient = new JPushClient(MASTER_SECRET, APP_KEY, null, ClientConfig.getInstance());
@@ -54,15 +54,15 @@ public class PushSender {
                 .build();
     }
 
-//    public static void sendOrderEvent(String pushId, String orderId) {
-//        try {
-//            PushResult localPushResult = jpushClient.sendPush(buildOrderObject(pushId, orderId));
-//        } catch (APIConnectionException e) {
-//            e.printStackTrace();
-//        } catch (APIRequestException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static void sendOrderEvent(String pushId, String orderId) {
+        try {
+            PushResult localPushResult = jpushClient.sendPush(buildOrderObject(pushId, orderId));
+        } catch (APIConnectionException e) {
+            e.printStackTrace();
+        } catch (APIRequestException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static PushPayload buildOrderObject(String pushId, String orderId) {
         return PushPayload.newBuilder()
@@ -77,4 +77,5 @@ public class PushSender {
                         .build())
                 .build();
     }
+
 }

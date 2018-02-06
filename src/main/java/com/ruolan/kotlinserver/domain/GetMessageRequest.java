@@ -1,6 +1,6 @@
 package com.ruolan.kotlinserver.domain;
 
-public class GetMessageReuqest {
+public class GetMessageRequest {
     private int pageNo;
 
     public int getPageNo() {

@@ -14,9 +14,11 @@ public interface CartGoodsDao {
 
     CartGoods selectByPrimaryKey(Integer paramInteger);
 
+    CartGoods selectByGoodsId(Integer goodsId);
+
     int updateByPrimaryKeySelective(CartGoods paramCartGoods);
 
-    int updateByPrimaryKey(CartGoods paramCartGoods);
+    int updateByPrimaryKey(CartGoods cartGoods);
 
     List<CartGoods> selectCartGoodsList(int paramInt);
 

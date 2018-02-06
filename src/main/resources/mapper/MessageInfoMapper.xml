@@ -108,7 +108,7 @@
         select
         <include refid="Base_Column_List" />
         from message_info
-        where user_id = #{userId} LIMIT #{beginIndex} ,#{pageSize}
+        where user_id = #{userId} ORDER BY id DESC LIMIT #{beginIndex} ,#{pageSize}
     </select>
 
     <select id="selectAllMessageList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

@@ -20,6 +20,14 @@
         from cart_goods
         where id = #{id,jdbcType=INTEGER}
     </select>
+
+    <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from cart_goods
+        where goods_id = #{goodsId,jdbcType=INTEGER}
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from cart_goods
         where id = #{id,jdbcType=INTEGER}

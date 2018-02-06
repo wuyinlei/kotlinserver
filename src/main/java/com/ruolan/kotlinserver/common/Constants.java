@@ -57,7 +57,7 @@ public class Constants {
         public static final String CATEGORY_LIST_SUCCESS = "商品列表获取成功";
         public static final String CATEGORY_LIST_ERROR = "商品列表获取失败";
         public static final String CATEGORY_LIST_EMPTY = "商品列表为空";
-        public static final String CATEGORY_DETAIL_SUCCESS = "列表为空";
+        public static final String CATEGORY_DETAIL_SUCCESS = "获取列表成功";
 
         //地址相关的常量
         public static final String NO_PERMISSION = "没有权限操作,等登录之后再进行";
@@ -74,7 +74,9 @@ public class Constants {
         public static final String DELETE_CART_SUCCESS = "删除商品成功";
         public static final String GET_CART_LIST_SUCCESS = "获取购物车列表成功";
         public static final String GET_CART_LIST_EMPTY = "购物车列表为空";
-
+        public static final String CART_SUBMIT_SUCCESS = "购物车提交成功";
+        public static final String CART_SUBMIT_ERROR = "购物车提交失败";
+        public static final String CART_TOTAL_PRICE_ERROR = "购物车总价转换失败";
 
         //消息相关常量
         public static final String GET_MESSAGE_LIST_ERROR = "消息列表为空";
@@ -88,6 +90,17 @@ public class Constants {
         //订单相关常量
         public static final String ORDER_LIST_IS_EMPTY = "订单列表为空";
         public static final String ORDER_LIST_IS_SUCCESS = "订单列表获取成功";
+        public static final String ORDER_SUBMIT_SUCCESS = "订单提交成功";
+        public static final String CANCEL_ORDER_SUCCESS = "订单取消成功";
+        public static final String CANCEL_ORDER_ERROR = "订单取消失败";
+        public static final String ORDER_CONFIRM_SUCCESS = "订单确认收货成功";
+        public static final String ORDER_CONFIRM_ERROR = "订单确认收货失败";
+        public static final String ORDER_PAY_SUCCESS = "订单支付成功";
+        public static final String ORDER_PAY_ERROR = "订单支付失败";
+        public static final String ORDER_GET_SUCCESS = "订单获取成功";
+        public static final String ORDER_GET_ERROR = "订单获取失败";
+
+
 
     }
 

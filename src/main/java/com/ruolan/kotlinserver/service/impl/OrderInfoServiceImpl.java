@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("orderService")
+@Service("orderInfoService")
 public class OrderInfoServiceImpl implements OrderInfoService {
 
     @Autowired

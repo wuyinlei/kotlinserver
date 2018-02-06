@@ -12,4 +12,8 @@ public interface CartGoodsService {
 
     int deleteCartGoods(List<Integer> paramList);
 
+    int updateCartGoods(CartGoods cartGoods);
+
+    CartGoods selectByGoodsId(Integer goodsId);
+
 }

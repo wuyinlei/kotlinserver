@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("cartService")
 public class CartGoodsServiceImpl implements CartGoodsService {
 
     @Autowired
@@ -26,6 +26,16 @@ public class CartGoodsServiceImpl implements CartGoodsService {
 
     @Override
     public int deleteCartGoods(List<Integer> paramList) {
-       return cartGoodsDao.deleteCartGoods(paramList);
+        return cartGoodsDao.deleteCartGoods(paramList);
+    }
+
+    @Override
+    public int updateCartGoods(CartGoods cartGoods) {
+        return cartGoodsDao.updateByPrimaryKey(cartGoods);
+    }
+
+    @Override
+    public CartGoods selectByGoodsId(Integer goodsId) {
+        return cartGoodsDao.selectByGoodsId(goodsId);
     }
 }
