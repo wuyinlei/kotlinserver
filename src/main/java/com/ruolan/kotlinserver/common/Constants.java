@@ -66,6 +66,7 @@ public class Constants {
         public static final String ADD_ADDRESS_SUCCESS = "添加地址成功";
         public static final String MODIFY_ADDRESS_SUCCESS = "修改地址成功";
         public static final String DELETE_ADDRESS_SUCCESS = "刪除地址成功";
+        public static final String MODIFY_ADDRESS_ERROR = "修改地址失败";
 
         //购物车相关的常量
         public static final String ADD_CART_SUSSECC = "添加购物车成功";
