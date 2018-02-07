@@ -8,6 +8,8 @@
         <result column="ship_id" property="shipId" jdbcType="INTEGER" />
         <result column="total_price" property="totalPrice" jdbcType="INTEGER" />
         <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+        <result column="order_token" property="orderInfoToken" jdbcType="VARCHAR" />
+
     </resultMap>
     <sql id="Base_Column_List" >
         id, user_id, pay_type, ship_id, total_price, order_status
@@ -18,16 +20,26 @@
         from order_info
         where id = #{id,jdbcType=INTEGER}
     </select>
+
+    <select id="selectByToken" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from order_info
+        where order_token = #{orderInfoToken,jdbcType=INTEGER}
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from order_info
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.ruolan.kotlinserver.model.OrderInfo" useGeneratedKeys="true" keyProperty="id">
         insert into order_info (user_id, pay_type,
-        ship_id, total_price, order_status
+        ship_id, total_price, order_status,order_token
         )
         values (#{userId,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER},
         #{shipId,jdbcType=INTEGER}, #{totalPrice,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}
+        , #{orderInfoToken,jdbcType=VARCHAR}
+
         )
     </insert>
     <insert id="insertSelective" parameterType="com.ruolan.kotlinserver.model.OrderInfo" >
@@ -51,6 +63,9 @@
             <if test="orderStatus != null" >
                 order_status,
             </if>
+            <if test="orderInfoToken != null" >
+                order_token,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -70,6 +85,9 @@
             </if>
             <if test="orderStatus != null" >
                 #{orderStatus,jdbcType=INTEGER},
+            </if>
+            <if test="orderInfoToken != null" >
+                #{orderInfoToken,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -91,6 +109,9 @@
             <if test="orderStatus != null" >
                 order_status = #{orderStatus,jdbcType=INTEGER},
             </if>
+            <if test="orderInfoToken != null" >
+                order_token = #{orderInfoToken,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -100,7 +121,8 @@
         pay_type = #{payType,jdbcType=INTEGER},
         ship_id = #{shipId,jdbcType=INTEGER},
         total_price = #{totalPrice,jdbcType=INTEGER},
-        order_status = #{orderStatus,jdbcType=INTEGER}
+        order_status = #{orderStatus,jdbcType=INTEGER},
+        order_token = #{orderInfoToken,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

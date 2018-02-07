@@ -21,4 +21,6 @@ public interface OrderInfoService {
 
     int modifyOrder(OrderInfo paramOrderInfo);
 
+    OrderInfo getOrderByToken(String token);
+
 }

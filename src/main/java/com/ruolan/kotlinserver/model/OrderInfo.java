@@ -8,6 +8,7 @@
 /*    */   private Integer shipId;
 /*    */   private String totalPrice;
 /*    */   private Integer orderStatus;
+           private String orderInfoToken;
 /*    */ 
 /*    */   public Integer getId()
 /*    */   {
@@ -57,7 +58,15 @@
 /*    */   public void setOrderStatus(Integer orderStatus) {
 /* 61 */     this.orderStatus = orderStatus;
 /*    */   }
-/*    */ }
+
+    public String getOrderInfoToken() {
+        return orderInfoToken;
+    }
+
+    public void setOrderInfoToken(String orderInfoToken) {
+        this.orderInfoToken = orderInfoToken;
+    }
+    /*    */ }
 
 /* Location:           E:\WorkSpace\App\Test\appidzbnbo3hx6t\ROOT\WEB-INF\classes\
  * Qualified Name:     com.module.user.model.OrderInfo

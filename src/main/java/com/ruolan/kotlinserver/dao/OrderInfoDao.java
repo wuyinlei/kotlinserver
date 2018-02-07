@@ -15,6 +15,8 @@ public interface OrderInfoDao {
 
     OrderInfo selectByPrimaryKey(Integer paramInteger);
 
+    OrderInfo selectByToken(String token);
+
     int updateByPrimaryKeySelective(OrderInfo paramOrderInfo);
 
     int updateByPrimaryKey(OrderInfo paramOrderInfo);

@@ -53,4 +53,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     public int modifyOrder(OrderInfo orderInfo) {
         return this.orderInfoDao.updateByPrimaryKey(orderInfo);
     }
+
+    @Override
+    public OrderInfo getOrderByToken(String token) {
+        return orderInfoDao.selectByToken(token);
+    }
 }

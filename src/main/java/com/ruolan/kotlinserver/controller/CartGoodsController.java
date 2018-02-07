@@ -12,6 +12,7 @@ import com.ruolan.kotlinserver.service.CartGoodsService;
 import com.ruolan.kotlinserver.service.OrderInfoService;
 import com.ruolan.kotlinserver.service.ShipAddressService;
 import com.ruolan.kotlinserver.service.UserService;
+import com.ruolan.kotlinserver.utils.TextUtil;
 import com.ruolan.kotlinserver.utils.UserDefault;
 import com.ruolan.kotlinserver.utils.YuanFenConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @EnableAutoConfiguration
@@ -202,7 +204,26 @@ public class CartGoodsController {
 
         orderInfo.setPayType(0);
 
-        int orderId = orderInfoService.addOrder(orderInfo);
+        //在这里试用这个token  为了给这个订单一个唯一的标识  然后后面通过这个token查询这个订单  因为之前的所有字段
+        //是获取不了这个订单的  啦啦啦
+        String newToken = UUID.randomUUID().toString();   //使用一个随机的UUID值充当Token
+        newToken = TextUtil.encodeBase64(newToken); //进行一次base64操作
+        orderInfo.setOrderInfoToken(newToken);
+
+        int updateElement = orderInfoService.addOrder(orderInfo);
+        if (updateElement == 0) {
+            resp.setStatus(Constants.CODE.ERROR_CODE);
+            resp.setMessage(Constants.MESSAGE.CART_TOTAL_PRICE_ERROR);
+            return resp;
+        }
+
+        OrderInfo order = orderInfoService.getOrderByToken(newToken);
+
+        if (order == null) {
+            resp.setStatus(Constants.CODE.ERROR_CODE);
+            resp.setMessage(Constants.MESSAGE.CART_TOTAL_PRICE_ERROR);
+            return resp;
+        }
 
         List cartIdList = new ArrayList();
 
@@ -210,7 +231,7 @@ public class CartGoodsController {
 
             cartIdList.add(orderGoods.getId());
 
-            orderGoods.setOrderId(Integer.valueOf(orderId));
+            orderGoods.setOrderId(order.getId());
             try {
                 orderGoods.setGoodsPrice(YuanFenConverter.changeF2Y(orderGoods.getGoodsPrice()));
             } catch (Exception e) {
@@ -221,11 +242,11 @@ public class CartGoodsController {
             }
             orderInfoService.addOrderGoods(orderGoods);
         }
-        InitAction.cartIdMap.put(orderId, cartIdList);
+        InitAction.cartIdMap.put(order.getId(), cartIdList);
         resp.setStatus(Constants.CODE.SUCCESS_CODE);
         resp.setMessage(Constants.MESSAGE.CART_SUBMIT_SUCCESS);
         //返回订单order
-        resp.setData(orderId);
+        resp.setData(order.getId());
         return resp;
     }
 
