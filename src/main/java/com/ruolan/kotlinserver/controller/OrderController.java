@@ -65,7 +65,7 @@ public class OrderController {
 
         List<OrderInfo> list = this.orderService.getOrderList(userInfo.getId(), req.getOrderStatus());
         if (list.isEmpty()) {
-            resp.setStatus(Constants.CODE.ERROR_CODE);
+            resp.setStatus(Constants.CODE.SUCCESS_CODE);
             resp.setMessage(Constants.MESSAGE.ORDER_LIST_IS_EMPTY);
             return resp;
         }
@@ -86,11 +86,11 @@ public class OrderController {
             order.setShipAddress(this.shipAddressService.getShipAddressById(info.getShipId()));
             //订单的商品地址
             List<OrderGoods> goodsList = this.orderService.getOrderGoodsList(info.getId());
-            if (goodsList.isEmpty()) {
-                resp.setStatus(Constants.CODE.ERROR_CODE);
-                resp.setMessage(Constants.MESSAGE.ORDER_LIST_IS_EMPTY);
-                return resp;
-            }
+//            if (goodsList.isEmpty()) {
+//                resp.setStatus(Constants.CODE.SUCCESS_CODE);
+//                resp.setMessage(Constants.MESSAGE.ORDER_LIST_IS_EMPTY);
+//                return resp;
+//            }
             for (OrderGoods orderGoods : goodsList) {
                 //设置订单商品的单价
                 orderGoods.setGoodsPrice(YuanFenConverter.changeY2F(orderGoods.getGoodsPrice()));
@@ -128,7 +128,7 @@ public class OrderController {
         Order order = new Order();
         OrderInfo orderInfo = this.orderService.getOrderById(req.getOrderId());
         if (orderInfo == null) {
-            resp.setStatus(Constants.CODE.ERROR_CODE);
+            resp.setStatus(Constants.CODE.SUCCESS_CODE);
             resp.setMessage(Constants.MESSAGE.ORDER_GET_ERROR);
             resp.setData(order);
             return resp;
@@ -173,7 +173,7 @@ public class OrderController {
         }
 
         OrderInfo orderInfo = orderService.getOrderById(req.getOrder().getId());
-        orderInfo.setOrderStatus(Integer.valueOf(1));
+        orderInfo.setOrderStatus(1);
         orderInfo.setShipId(req.getOrder().getShipAddress().getId());
 
         this.orderService.modifyOrder(orderInfo);
