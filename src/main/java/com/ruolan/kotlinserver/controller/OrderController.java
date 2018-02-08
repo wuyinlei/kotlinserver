@@ -245,7 +245,8 @@ public class OrderController {
 
 
         OrderInfo orderInfo = this.orderService.getOrderById(req.getOrderId());
-        orderInfo.setOrderStatus(Integer.valueOf(3));
+
+        orderInfo.setOrderStatus(3);
         int updateElement = orderService.modifyOrder(orderInfo);
         if (updateElement == 0) {
             resp.setStatus(Constants.CODE.ERROR_CODE);

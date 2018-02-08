@@ -11,7 +11,7 @@ public interface OrderInfoService {
 
     int addOrder(OrderInfo paramOrderInfo);
 
-    List<OrderInfo> getOrderList(Integer paramInteger1, Integer paramInteger2);
+    List<OrderInfo> getOrderList(Integer userId, Integer status);
 
     int addOrderGoods(OrderGoods paramOrderGoods);
 

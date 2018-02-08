@@ -29,7 +29,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
     @Override
     public List<OrderInfo> getOrderList(Integer userId, Integer orderStatus) {
-        if (orderStatus.intValue() == 0) {
+        if (orderStatus == 0) {
             return this.orderInfoDao.selectAllOrderList(userId);
         }
         Map map = new HashMap();
